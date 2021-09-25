@@ -1,16 +1,19 @@
 <template>
-  <div class="w-screen h-screen bg-green-500 flex">
-    <Home />
+  <div>
+    <Scene ref="bgScene"></Scene>
   </div>
 </template>
 
 <script>
-import Home from "./views/Home";
+import Scene from "./components/Scene.vue";
 
 export default {
   name: "App",
   components: {
-    Home,
+    Scene,
+  },
+  mounted() {
+    this.$refs.bgScene.init();
   },
 };
 </script>
