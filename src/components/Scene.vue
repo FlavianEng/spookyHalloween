@@ -36,12 +36,15 @@ export default {
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.outputEncoding = Three.sRGBEncoding;
+      // renderer.gammaFactor = 2.2; TASK Test this
+      // renderer.debug.checkShaderErrors = false; //TASK Uncomment for prod
 
       camera.position.setZ(30);
 
       renderer.render(scene, camera);
 
       // Light
+      // TASK Set better light, coming from the moon
       const pointLight = new Three.PointLight(0xffffff);
       pointLight.position.set(5, 5, 5);
 
@@ -63,17 +66,24 @@ export default {
 
       // Url of the file refer to the public repo
       loader.load(
-        "/3dModels/scene.gltf",
+        "/mesh/scene.gltf",
         (gltf) => {
           // TASK Give author with gltf extra
           console.log("It is load", gltf);
-
           const model = gltf.scene;
+
+          model.traverse((texture) => {
+            // Hide white ugly edge
+            if (texture.name === "edge_0") {
+              texture.visible = false;
+            }
+          });
+
           scene.add(model);
         },
-        undefined, //Progress step
+        undefined, // In progress
         function (err) {
-          console.error("Three is an error", err);
+          console.error("Three has an error : ", err);
         }
       );
 
