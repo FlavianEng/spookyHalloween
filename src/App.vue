@@ -1,7 +1,7 @@
 <template>
   <div class="font-Poppins">
     <Scene ref="bgScene" class="fixed top-0 left-0"></Scene>
-    <HalloweenText class="absolute"></HalloweenText>
+    <HalloweenText v-if="false" class="absolute"></HalloweenText>
   </div>
 </template>
 

@@ -7,12 +7,13 @@
 import * as Three from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+// import { GUI } from "three/examples/jsm/libs/dat.gui.module";
 
 export default {
   name: "Scene",
   data() {
     return {
-      debug: false,
+      debug: true,
     };
   },
   methods: {
@@ -21,9 +22,20 @@ export default {
       const scene = new Three.Scene();
       scene.background = new Three.Color(0x281f2e);
 
-      // Params : Field of view, aspectRation, viewFrustrum
+      // Camera params
+      // fov — Camera frustum vertical field of view.
+      // aspect — Camera frustum aspect ratio.
+      // near — Camera frustum near plane.
+      // far — Camera frustum far plane.
       const camera = new Three.PerspectiveCamera(
-        75,
+        50,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+
+      const cameraHelp = new Three.PerspectiveCamera(
+        90,
         window.innerWidth / window.innerHeight,
         0.1,
         1000
@@ -36,10 +48,18 @@ export default {
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.outputEncoding = Three.sRGBEncoding;
-      // renderer.gammaFactor = 2.2; TASK Test this
-      // renderer.debug.checkShaderErrors = false; //TASK Uncomment for prod
 
-      camera.position.setZ(30);
+      cameraHelp.position.setX(10);
+      cameraHelp.position.setY(10);
+      cameraHelp.position.setZ(10); // distance
+
+      // Camera initial position
+      camera.position.setX(0);
+      camera.position.setY(1);
+      camera.position.setZ(-2);
+      // camera.rotateX(1);
+      camera.rotateY(160.3);
+      // camera.rotateZ(-3.14);
 
       renderer.render(scene, camera);
 
@@ -54,12 +74,20 @@ export default {
 
       // Helper
       if (this.debug) {
-        const lightHelper = new Three.PointLightHelper(pointLight);
-        const gridHelper = new Three.GridHelper(200, 50);
+        // const lightHelper = new Three.PointLightHelper(pointLight);
+        // const gridHelper = new Three.GridHelper(200, 50);
+        const cameraHelper = new Three.CameraHelper(camera);
+        // const axesHelper = new Three.AxesHelper(5);
 
-        scene.add(lightHelper, gridHelper);
+        scene.add(
+          // lightHelper,
+          // gridHelper,
+          // axesHelper,
+          camera,
+          cameraHelper
+        );
       }
-      const controls = new OrbitControls(camera, renderer.domElement);
+      const controls = new OrbitControls(cameraHelp, renderer.domElement);
 
       // Loader
       const loader = new GLTFLoader();
@@ -93,6 +121,7 @@ export default {
         controls.update();
 
         renderer.render(scene, camera);
+        // renderer.render(scene, cameraHelp);
       }
 
       animate();
