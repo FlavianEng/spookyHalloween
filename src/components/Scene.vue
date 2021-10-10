@@ -4,6 +4,9 @@
 
 <script>
 // TASK Create a README.MD with a link to the 3D model author
+// TASK Add a ground (Create a 3D thin object with a material)
+// TASK Add spooky trees
+// TASK Add loader splash screen
 import * as Three from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -74,39 +77,84 @@ export default {
       // Helper
       if (this.debug) {
         // const lightHelper = new Three.PointLightHelper(pointLight);
-        // const gridHelper = new Three.GridHelper(200, 50);
-        const cameraHelper = new Three.CameraHelper(camera);
+        const gridHelper = new Three.GridHelper(200, 50);
+        // const cameraHelper = new Three.CameraHelper(camera);
         const axesHelper = new Three.AxesHelper(10);
 
         scene.add(
           // lightHelper,
-          // gridHelper,
+          gridHelper,
           axesHelper,
-          camera,
-          cameraHelper
+          camera
+          // cameraHelper
         );
       }
       const controls = new OrbitControls(cameraHelp, renderer.domElement);
 
-      // Loader
-      const loader = new GLTFLoader();
+      // Loaders
+      const catLoader = new GLTFLoader();
+      const houseLoader = new GLTFLoader();
+      const pumpkinLoader = new GLTFLoader();
 
       // Url of the file refer to the public repo
-      loader.load(
-        "/mesh/scene.gltf",
+      catLoader.load(
+        "/mesh/cat/scene.gltf",
         (gltf) => {
           // TASK Give author with gltf extra
-          console.log("It is load", gltf);
-          const model = gltf.scene;
+          console.log("Cat is loaded", gltf);
+          const catModel = gltf.scene;
 
-          model.traverse((texture) => {
+          catModel.traverse((texture) => {
             // Hide white ugly edge
             if (texture.name === "edge_0") {
               texture.visible = false;
             }
           });
 
-          scene.add(model);
+          scene.add(catModel);
+        },
+        undefined, // In progress
+        function (err) {
+          console.error("Three has an error : ", err);
+        }
+      );
+
+      // Url of the file refer to the public repo
+      houseLoader.load(
+        "/mesh/house/scene.gltf",
+        (gltf) => {
+          // TASK Give author with gltf extra
+          console.log("House is loaded", gltf);
+          const houseModel = gltf.scene;
+          const scale = 2;
+          houseModel.scale.set(scale, scale, scale);
+          houseModel.position.x = -3.5 * scale;
+          houseModel.position.y = 3.75 * scale;
+          houseModel.position.z = -4.5 * scale;
+          houseModel.rotateY(47.1);
+
+          scene.add(houseModel);
+        },
+        undefined, // In progress
+        function (err) {
+          console.error("Three has an error : ", err);
+        }
+      );
+
+      // Url of the file refer to the public repo
+      pumpkinLoader.load(
+        "/mesh/pumpkin/scene.gltf",
+        (gltf) => {
+          // TASK Give author with gltf extra
+          console.log("pumpkin is loaded", gltf);
+          const pumpkinModel = gltf.scene;
+          const scale = 1;
+          pumpkinModel.scale.set(scale, scale, scale);
+          pumpkinModel.position.x = 0.4 * scale;
+          pumpkinModel.position.z = -11.5 * scale;
+          pumpkinModel.rotateY(5.2);
+
+          scene.add(pumpkinModel);
         },
         undefined, // In progress
         function (err) {
