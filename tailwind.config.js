@@ -1,5 +1,3 @@
-const { colors } = require("tailwindcss/defaultTheme");
-
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
@@ -9,11 +7,13 @@ module.exports = {
         Creepster: ["Creepster"],
         Poppins: ["Poppins"],
       },
-    },
-    colors: {
-      white: colors.white,
-      purple: {
-        dark: "#1C042C",
+      margin: {
+        "40%": "40%",
+      },
+      colors: {
+        purple: {
+          dark: "#1C042C",
+        },
       },
     },
   },

@@ -36,7 +36,7 @@
       stepping on cracks in the road or spilling salt.
     </p>
 
-    <h2>Happy Halloween !</h2>
+    <h2 class="text-9xl mb-40%">Happy Halloween !</h2>
   </div>
 </template>
 

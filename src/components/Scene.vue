@@ -7,13 +7,12 @@
 import * as Three from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-// import { GUI } from "three/examples/jsm/libs/dat.gui.module";
 
 export default {
   name: "Scene",
   data() {
     return {
-      debug: true,
+      debug: false,
     };
   },
   methods: {
@@ -54,12 +53,12 @@ export default {
       cameraHelp.position.setZ(10); // distance
 
       // Camera initial position
-      camera.position.setX(0);
+      camera.position.setX(1);
       camera.position.setY(1);
-      camera.position.setZ(-2);
-      // camera.rotateX(1);
-      camera.rotateY(160.3);
-      // camera.rotateZ(-3.14);
+      camera.position.setZ(-5);
+
+      const newCameraAngle = new Three.Euler(0, 160, 0, "XYZ");
+      camera.setRotationFromEuler(newCameraAngle);
 
       renderer.render(scene, camera);
 
@@ -77,12 +76,12 @@ export default {
         // const lightHelper = new Three.PointLightHelper(pointLight);
         // const gridHelper = new Three.GridHelper(200, 50);
         const cameraHelper = new Three.CameraHelper(camera);
-        // const axesHelper = new Three.AxesHelper(5);
+        const axesHelper = new Three.AxesHelper(10);
 
         scene.add(
           // lightHelper,
           // gridHelper,
-          // axesHelper,
+          axesHelper,
           camera,
           cameraHelper
         );
@@ -115,6 +114,21 @@ export default {
         }
       );
 
+      function moveCamera() {
+        const t = document.body.getBoundingClientRect().top;
+
+        camera.position.x = 1 + t * -0.0001;
+        camera.position.y = 1 + t * -0.0003;
+        camera.position.z = -5 + t * -0.003; //Zoom effect
+
+        const newCameraAngle = new Three.Euler(0, 160 + t * 0.0007, 0, "XYZ");
+        camera.setRotationFromEuler(newCameraAngle);
+      }
+
+      document.body.onscroll = moveCamera;
+
+      // TASK Move functions from function and make call
+      // TASK Decompose more init function
       function animate() {
         requestAnimationFrame(animate);
 
