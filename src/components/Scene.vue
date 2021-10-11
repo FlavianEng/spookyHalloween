@@ -4,8 +4,6 @@
 
 <script>
 // TASK Create a README.MD with a link to the 3D model author
-// TASK Add a ground (Create a 3D thin object with a material)
-// TASK Add spooky trees
 // TASK Add loader splash screen
 import * as Three from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -15,6 +13,7 @@ export default {
   name: "Scene",
   data() {
     return {
+      // TASK Add a bunch of parameter to easily change them
       debug: false,
     };
   },
@@ -119,13 +118,13 @@ export default {
         }
       );
 
-      // Url of the file refer to the public repo
       houseLoader.load(
         "/mesh/house/scene.gltf",
         (gltf) => {
           // TASK Give author with gltf extra
           console.log("House is loaded", gltf);
           const houseModel = gltf.scene;
+
           const scale = 2;
           houseModel.scale.set(scale, scale, scale);
           houseModel.position.x = -3.5 * scale;
@@ -141,17 +140,14 @@ export default {
         }
       );
 
-      // Url of the file refer to the public repo
       pumpkinLoader.load(
         "/mesh/pumpkin/scene.gltf",
         (gltf) => {
           // TASK Give author with gltf extra
           console.log("pumpkin is loaded", gltf);
           const pumpkinModel = gltf.scene;
-          const scale = 1;
-          pumpkinModel.scale.set(scale, scale, scale);
-          pumpkinModel.position.x = 0.4 * scale;
-          pumpkinModel.position.z = -11.5 * scale;
+          pumpkinModel.position.x = 0.4;
+          pumpkinModel.position.z = -11.5;
           pumpkinModel.rotateY(5.2);
 
           scene.add(pumpkinModel);

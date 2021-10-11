@@ -1,5 +1,6 @@
 <template>
   <div class="font-Poppins">
+    <!-- TASK Add a button to set the text to invisible but that allow to keep scrolling -->
     <Scene ref="bgScene" class="fixed top-0 left-0"></Scene>
     <HalloweenText v-if="true" class="absolute"></HalloweenText>
   </div>
