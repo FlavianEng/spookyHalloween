@@ -1,9 +1,31 @@
 <template>
-  <div class="w-full h-screen">
-    <Switch
-      class="fixed top-0 right-0"
-      @isSwitchToggled="toggleTextVisibility"
-    ></Switch>
+  <div
+    class="w-full h-screen"
+    :class="{ 'overflow-hidden': isCreditsDisplayed }"
+  >
+    <Credits
+      :is-credits-displayed="isCreditsDisplayed"
+      @close="toggleCreditsDisplayed"
+    ></Credits>
+    <div class="fixed top-0 flex w-full justify-between items-center z-20 my-4">
+      <div class="ml-4">
+        <button
+          class="
+            text-purple-500
+            font-bold
+            border-b-2 border-transparent
+            hover:border-purple-500 hover:text-yellow-500
+            transition-all
+            duration-500
+          "
+          @click="toggleCreditsDisplayed"
+        >
+          Credits
+        </button>
+      </div>
+
+      <Switch class="mr-4" @isSwitchToggled="toggleTextVisibility"></Switch>
+    </div>
     <div
       class="
         flex flex-col
@@ -61,19 +83,26 @@
 
 <script>
 import Switch from "./Switch.vue";
+import Credits from "./Credits.vue";
+
 export default {
   name: "TextContent",
   components: {
     Switch,
+    Credits,
   },
   data() {
     return {
       isTextVisible: true,
+      isCreditsDisplayed: false,
     };
   },
   methods: {
     toggleTextVisibility(toggleState) {
       this.isTextVisible = toggleState;
+    },
+    toggleCreditsDisplayed() {
+      this.isCreditsDisplayed = !this.isCreditsDisplayed;
     },
   },
 };

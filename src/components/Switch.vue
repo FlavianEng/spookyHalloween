@@ -1,10 +1,10 @@
 <template>
   <div
-    class="flex justify-end items-center m-4 z-50 cursor-pointer"
+    class="flex justify-end items-center cursor-pointer"
     @click="toggleSwitch"
   >
     <div
-      class="text-yellow-500 text-lg mr-2"
+      class="text-yellow-500 mr-2 font-bold"
       :class="{ 'text-purple-500': isOn }"
     >
       Afficher le texte

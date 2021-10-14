@@ -99,7 +99,6 @@ export default {
       catLoader.load(
         "/mesh/cat/scene.gltf",
         (gltf) => {
-          // TASK Give author with gltf extra
           console.log("Cat is loaded", gltf);
           const catModel = gltf.scene;
 
@@ -121,7 +120,6 @@ export default {
       houseLoader.load(
         "/mesh/house/scene.gltf",
         (gltf) => {
-          // TASK Give author with gltf extra
           console.log("House is loaded", gltf);
           const houseModel = gltf.scene;
 
@@ -143,7 +141,6 @@ export default {
       pumpkinLoader.load(
         "/mesh/pumpkin/scene.gltf",
         (gltf) => {
-          // TASK Give author with gltf extra
           console.log("pumpkin is loaded", gltf);
           const pumpkinModel = gltf.scene;
           pumpkinModel.position.x = 0.4;
