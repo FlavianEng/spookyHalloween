@@ -10,11 +10,6 @@ module.exports = {
       margin: {
         "40%": "40%",
       },
-      colors: {
-        purple: {
-          dark: "#1C042C",
-        },
-      },
     },
   },
   variants: {
