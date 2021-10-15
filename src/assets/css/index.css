@@ -10,4 +10,28 @@
   .text-base-halloween:nth-child(even) {
     @apply ml-auto;
   }
+
+  .animate-witch {
+    animation: witch 3000ms linear infinite;
+    transform-box: content-box;
+  }
+}
+
+
+@keyframes witch {
+  0% {
+    transform: translateX(0vw);
+  }
+  20% {
+    transform: translateX(23vw);
+  }
+  40% {
+    transform: translateX(47vw) rotate(0deg);
+  }
+  55% {
+    transform: translateX(53vw) rotate(360deg);
+  }
+  100% {
+    transform: translateX(100vw) rotate(360deg);
+  }
 }

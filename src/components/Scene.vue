@@ -4,17 +4,20 @@
 
 <script>
 // TASK Create a README.MD with a link to the 3D model author
-// TASK Add loader splash screen
 import * as Three from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 export default {
   name: "Scene",
+  emits: ["sceneIsReady"],
   data() {
     return {
       // TASK Add a bunch of parameter to easily change them
       debug: false,
+      isCatSceneReady: false,
+      isHouseSceneReady: false,
+      isPumpkinSceneReady: false,
     };
   },
   methods: {
@@ -99,7 +102,7 @@ export default {
       catLoader.load(
         "/mesh/cat/scene.gltf",
         (gltf) => {
-          console.log("Cat is loaded", gltf);
+          this.toggleSceneReady("cat");
           const catModel = gltf.scene;
 
           catModel.traverse((texture) => {
@@ -120,7 +123,7 @@ export default {
       houseLoader.load(
         "/mesh/house/scene.gltf",
         (gltf) => {
-          console.log("House is loaded", gltf);
+          this.toggleSceneReady("house");
           const houseModel = gltf.scene;
 
           const scale = 2;
@@ -141,7 +144,7 @@ export default {
       pumpkinLoader.load(
         "/mesh/pumpkin/scene.gltf",
         (gltf) => {
-          console.log("pumpkin is loaded", gltf);
+          this.toggleSceneReady("pumpkin");
           const pumpkinModel = gltf.scene;
           pumpkinModel.position.x = 0.4;
           pumpkinModel.position.z = -11.5;
@@ -180,6 +183,33 @@ export default {
       }
 
       animate();
+    },
+    isAllScenesLoaded() {
+      if (
+        this.isCatSceneReady &&
+        this.isHouseSceneReady &&
+        this.isPumpkinSceneReady
+      ) {
+        this.$emit("sceneIsReady");
+      }
+    },
+    toggleSceneReady(sceneName) {
+      switch (sceneName) {
+        case "cat":
+          this.isCatSceneReady = true;
+          break;
+        case "house":
+          this.isHouseSceneReady = true;
+          break;
+        case "pumpkin":
+          this.isPumpkinSceneReady = true;
+          break;
+
+        default:
+          break;
+      }
+
+      this.isAllScenesLoaded();
     },
   },
 };

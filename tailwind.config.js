@@ -10,6 +10,10 @@ module.exports = {
       margin: {
         "40%": "40%",
       },
+      zIndex: {
+        60: "60",
+        70: "70",
+      },
     },
   },
   variants: {
