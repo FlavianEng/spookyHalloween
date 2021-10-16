@@ -37,10 +37,10 @@ export default {
   },
   methods: {
     hideSplashscreen() {
-      // TASK Adds a fading animation
-      this.isLoading = false;
       this.$refs.splashscreen.resetSplashscreen();
-      // TASK Once splashscreen is hided, fade the text with opacity 0 to opacity 1
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
     },
   },
 };

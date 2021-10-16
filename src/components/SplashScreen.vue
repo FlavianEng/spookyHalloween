@@ -10,7 +10,10 @@
       items-center
       z-60
       absolute
+      transition-opacity
+      duration-500
     "
+    :class="{ 'opacity-0': !loading }"
   >
     <div class="flex justify-start items-center w-full">
       <WitchIcon
@@ -38,6 +41,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       witchSize: 150,
       loadingTextInterval: null,
       loadingTextDelay: 1250,
@@ -82,6 +86,7 @@ export default {
       clearInterval(this.loadingTextInterval);
       this.loadingTextInterval = null;
       this.iteratorPosition = 0;
+      this.loading = false;
     },
   },
 };
