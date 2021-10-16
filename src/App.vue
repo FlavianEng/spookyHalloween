@@ -6,11 +6,14 @@
       @sceneIsReady="hideSplashscreen"
     ></Scene>
     <HalloweenText
-      v-if="true"
+      v-if="!debug"
       class="absolute"
       :class="{ 'overflow-hidden': isLoading }"
     ></HalloweenText>
-    <SplashScreen v-show="isLoading" ref="splashscreen"></SplashScreen>
+    <SplashScreen
+      v-show="isLoading && !debug"
+      ref="splashscreen"
+    ></SplashScreen>
   </div>
 </template>
 
@@ -19,6 +22,8 @@ import Scene from "./components/Scene.vue";
 import HalloweenText from "./components/HalloweenText.vue";
 import SplashScreen from "./components/SplashScreen.vue";
 
+// TASK Create a README.MD with a link to the 3D model author
+// TASK Adds a music
 export default {
   name: "App",
   components: {
@@ -29,6 +34,7 @@ export default {
   data() {
     return {
       isLoading: true,
+      debug: false,
     };
   },
   mounted() {

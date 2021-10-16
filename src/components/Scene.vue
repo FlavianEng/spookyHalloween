@@ -3,10 +3,10 @@
 </template>
 
 <script>
-// TASK Create a README.MD with a link to the 3D model author
 import * as Three from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+// DEBUG
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 export default {
   name: "Scene",
@@ -22,9 +22,8 @@ export default {
   },
   methods: {
     init() {
-      // The Three scene is the container
+      // INFO There are no lights because GTLF loader has an on-board light map
       const scene = new Three.Scene();
-      scene.background = new Three.Color(0x281f2e);
 
       // Camera params
       // fov — Camera frustum vertical field of view.
@@ -38,12 +37,13 @@ export default {
         1000
       );
 
-      const cameraHelp = new Three.PerspectiveCamera(
-        90,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-      );
+      // DEBUG
+      // const cameraHelp = new Three.PerspectiveCamera(
+      //   90,
+      //   window.innerWidth / window.innerHeight,
+      //   0.1,
+      //   1000
+      // );
 
       const renderer = new Three.WebGLRenderer({
         canvas: document.querySelector("#sceneCanvas"),
@@ -53,9 +53,10 @@ export default {
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.outputEncoding = Three.sRGBEncoding;
 
-      cameraHelp.position.setX(10);
-      cameraHelp.position.setY(10);
-      cameraHelp.position.setZ(10); // distance
+      // DEBUG
+      // cameraHelp.position.setX(10);
+      // cameraHelp.position.setY(10);
+      // cameraHelp.position.setZ(10); // distance
 
       // Camera initial position
       camera.position.setX(1);
@@ -67,31 +68,15 @@ export default {
 
       renderer.render(scene, camera);
 
-      // Light
-      // TASK Set better light, coming from the moon
-      const pointLight = new Three.PointLight(0xffffff);
-      pointLight.position.set(5, 5, 5);
-
-      const ambientLight = new Three.AmbientLight(0xffffff);
-
-      scene.add(pointLight, ambientLight);
-
-      // Helper
+      // Helpers
       if (this.debug) {
-        // const lightHelper = new Three.PointLightHelper(pointLight);
         const gridHelper = new Three.GridHelper(200, 50);
-        // const cameraHelper = new Three.CameraHelper(camera);
+        const cameraHelper = new Three.CameraHelper(camera);
         const axesHelper = new Three.AxesHelper(10);
-
-        scene.add(
-          // lightHelper,
-          gridHelper,
-          axesHelper,
-          camera
-          // cameraHelper
-        );
+        scene.add(gridHelper, axesHelper, camera, cameraHelper);
       }
-      const controls = new OrbitControls(cameraHelp, renderer.domElement);
+      // DEBUG
+      // const controls = new OrbitControls(cameraHelp, renderer.domElement);
 
       // Loaders
       const catLoader = new GLTFLoader();
@@ -176,9 +161,11 @@ export default {
       function animate() {
         requestAnimationFrame(animate);
 
-        controls.update();
-
+        // Comment this when debug
         renderer.render(scene, camera);
+
+        // DEBUG
+        // controls.update();
         // renderer.render(scene, cameraHelp);
       }
 
