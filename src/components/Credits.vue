@@ -1,7 +1,7 @@
 <template>
   <div
     v-show="isCreditsDisplayed"
-    class="w-full h-screen absolute flex justify-center items-center"
+    class="w-full h-screen fixed top-0 left-0 flex justify-center items-center"
   >
     <div class="bg-gray-900 w-full h-screen z-40 absolute opacity-90"></div>
     <div class="bg-purple-900 w-3/4 p-4 z-50 rounded">

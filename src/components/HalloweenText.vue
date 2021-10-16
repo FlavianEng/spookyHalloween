@@ -7,6 +7,13 @@
       :is-credits-displayed="isCreditsDisplayed"
       @close="toggleCreditsDisplayed"
     ></Credits>
+    <ArrowDownIcon
+      v-show="isShowScrollIcon"
+      :height="arrowDownIconSize"
+      :width="arrowDownIconSize"
+      class="text-yellow-500 fixed bottom-28 left-1/2"
+    ></ArrowDownIcon>
+    <!-- Header -->
     <div class="fixed top-0 flex w-full justify-between items-center z-20 my-4">
       <div class="ml-4">
         <button
@@ -26,6 +33,7 @@
 
       <Switch class="mr-4" @isSwitchToggled="toggleTextVisibility"></Switch>
     </div>
+    <!-- Content -->
     <div
       class="
         flex flex-col
@@ -84,18 +92,31 @@
 <script>
 import Switch from "./Switch.vue";
 import Credits from "./Credits.vue";
+import ArrowDownIcon from "./icons/ArrowDownIcon.vue";
 
 export default {
   name: "TextContent",
   components: {
     Switch,
     Credits,
+    ArrowDownIcon,
   },
   data() {
     return {
       isTextVisible: true,
       isCreditsDisplayed: false,
+      arrowDownIconSize: 40,
+      scrollIconTimeoutDelay: 10000,
+      scrollIconTimeout: null,
+      isShowScrollIcon: false,
     };
+  },
+  created() {
+    window.addEventListener("scroll", this.stopScrollIconTimeout);
+    this.startScrollIconTimeout();
+  },
+  destroyed() {
+    window.addEventListener("scroll", this.stopScrollIconTimeout);
   },
   methods: {
     toggleTextVisibility(toggleState) {
@@ -103,6 +124,16 @@ export default {
     },
     toggleCreditsDisplayed() {
       this.isCreditsDisplayed = !this.isCreditsDisplayed;
+    },
+    startScrollIconTimeout() {
+      this.scrollIconTimeout = setTimeout(() => {
+        this.isShowScrollIcon = true;
+      }, this.scrollIconTimeoutDelay);
+    },
+    stopScrollIconTimeout() {
+      this.isShowScrollIcon = false;
+      clearTimeout(this.scrollIconTimeout);
+      this.scrollIconTimeout = null;
     },
   },
 };

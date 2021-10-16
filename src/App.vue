@@ -11,7 +11,6 @@
       :class="{ 'overflow-hidden': isLoading }"
     ></HalloweenText>
     <SplashScreen v-show="isLoading" ref="splashscreen"></SplashScreen>
-    <!-- TASK Add an animated scroll icon -->
   </div>
 </template>
 

@@ -1,7 +1,6 @@
 <template>
   <div>
     <svg
-      v-if="iconName === 'witch'"
       id="witch"
       data-name="witch"
       :fill="iconColor"
@@ -54,12 +53,8 @@
 
 <script>
 export default {
-  name: "Icon",
+  name: "WitchIcon",
   props: {
-    iconName: {
-      type: String,
-      default: "witch",
-    },
     width: {
       type: [Number, String],
       default: 30,

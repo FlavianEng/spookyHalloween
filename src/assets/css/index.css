@@ -13,7 +13,10 @@
 
   .animate-witch {
     animation: witch 3000ms linear infinite;
-    transform-box: content-box;
+  }
+
+  .animate-arrow-down {
+    animation: scrollArrow 2500ms ease-in-out infinite;
   }
 }
 
@@ -33,5 +36,20 @@
   }
   100% {
     transform: translateX(100vw) rotate(360deg);
+  }
+}
+
+@keyframes scrollArrow {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+
+  }
+  100% {
+    transform: translateY(3rem);
+    opacity: 0;
   }
 }
