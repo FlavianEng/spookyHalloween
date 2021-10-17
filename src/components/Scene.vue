@@ -13,18 +13,23 @@ export default {
   emits: ["sceneIsReady"],
   data() {
     return {
-      // TASK Add a bunch of parameter to easily change them
       debug: false,
       isCatSceneReady: false,
       isHouseSceneReady: false,
       isPumpkinSceneReady: false,
     };
   },
+  mounted() {
+    this.createScene();
+  },
   methods: {
-    init() {
+    createScene() {
       // INFO There are no lights because GTLF loader has an on-board light map
+
+      // Creating scene
       const scene = new Three.Scene();
 
+      //#region Creating camera.s
       // Camera params
       // fov — Camera frustum vertical field of view.
       // aspect — Camera frustum aspect ratio.
@@ -37,27 +42,6 @@ export default {
         1000
       );
 
-      // DEBUG
-      // const cameraHelp = new Three.PerspectiveCamera(
-      //   90,
-      //   window.innerWidth / window.innerHeight,
-      //   0.1,
-      //   1000
-      // );
-
-      const renderer = new Three.WebGLRenderer({
-        canvas: document.querySelector("#sceneCanvas"),
-      });
-
-      renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.outputEncoding = Three.sRGBEncoding;
-
-      // DEBUG
-      // cameraHelp.position.setX(10);
-      // cameraHelp.position.setY(10);
-      // cameraHelp.position.setZ(10); // distance
-
       // Camera initial position
       camera.position.setX(1);
       camera.position.setY(1);
@@ -66,9 +50,31 @@ export default {
       const newCameraAngle = new Three.Euler(0, 160, 0, "XYZ");
       camera.setRotationFromEuler(newCameraAngle);
 
-      renderer.render(scene, camera);
+      // DEBUG
+      // const cameraHelp = new Three.PerspectiveCamera(
+      //   90,
+      //   window.innerWidth / window.innerHeight,
+      //   0.1,
+      //   1000
+      // );
+      // cameraHelp.position.setX(10);
+      // cameraHelp.position.setY(10);
+      // cameraHelp.position.setZ(10); // distance
+      //#endregion
 
-      // Helpers
+      //#region Creating renderer
+      const renderer = new Three.WebGLRenderer({
+        canvas: document.querySelector("#sceneCanvas"),
+      });
+
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.outputEncoding = Three.sRGBEncoding;
+
+      renderer.render(scene, camera);
+      //#endregion
+
+      //#region Helpers
       if (this.debug) {
         const gridHelper = new Three.GridHelper(200, 50);
         const cameraHelper = new Three.CameraHelper(camera);
@@ -77,7 +83,9 @@ export default {
       }
       // DEBUG
       // const controls = new OrbitControls(cameraHelp, renderer.domElement);
+      //#endregion
 
+      //#region Creating models
       // Loaders
       const catLoader = new GLTFLoader();
       const houseLoader = new GLTFLoader();
@@ -142,6 +150,7 @@ export default {
           console.error("Three has an error : ", err);
         }
       );
+      //#endregion
 
       function moveCamera() {
         const t = document.body.getBoundingClientRect().top;
@@ -156,8 +165,6 @@ export default {
 
       document.body.onscroll = moveCamera;
 
-      // TASK Move functions from function and make call
-      // TASK Decompose more init function
       function animate() {
         requestAnimationFrame(animate);
 
@@ -171,6 +178,7 @@ export default {
 
       animate();
     },
+
     isAllScenesLoaded() {
       if (
         this.isCatSceneReady &&

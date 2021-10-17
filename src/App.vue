@@ -1,10 +1,6 @@
 <template>
   <div class="font-Poppins">
-    <Scene
-      ref="bgScene"
-      class="fixed top-0 left-0"
-      @sceneIsReady="hideSplashscreen"
-    ></Scene>
+    <Scene class="fixed top-0 left-0" @sceneIsReady="hideSplashscreen"></Scene>
     <HalloweenText
       v-if="!debug"
       class="absolute"
@@ -36,9 +32,6 @@ export default {
       isLoading: true,
       debug: false,
     };
-  },
-  mounted() {
-    this.$refs.bgScene.init();
   },
   methods: {
     hideSplashscreen() {
