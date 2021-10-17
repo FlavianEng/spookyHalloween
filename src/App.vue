@@ -1,10 +1,16 @@
 <template>
   <div class="font-Poppins">
-    <Scene class="fixed top-0 left-0" @sceneIsReady="hideSplashscreen"></Scene>
+    <Scene
+      ref="scene"
+      class="fixed top-0 left-0"
+      @sceneIsReady="hideSplashscreen"
+    ></Scene>
     <HalloweenText
       v-if="!debug"
       class="absolute"
       :class="{ 'overflow-hidden': isLoading }"
+      :play-audio="playAudio"
+      :stop-audio="stopAudio"
     ></HalloweenText>
     <SplashScreen
       v-show="isLoading && !debug"
@@ -19,7 +25,6 @@ import HalloweenText from "./components/HalloweenText.vue";
 import SplashScreen from "./components/SplashScreen.vue";
 
 // TASK Create a README.MD with a link to the 3D model author
-// TASK Adds a music
 export default {
   name: "App",
   components: {
@@ -38,7 +43,14 @@ export default {
       this.$refs.splashscreen.resetSplashscreen();
       setTimeout(() => {
         this.isLoading = false;
+        this.playAudio();
       }, 1000);
+    },
+    playAudio() {
+      this.$refs.scene.playAudio();
+    },
+    stopAudio() {
+      this.$refs.scene.stopAudio();
     },
   },
 };

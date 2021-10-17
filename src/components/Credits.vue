@@ -86,6 +86,20 @@
             >CC Attribution - NonCommercial - ShareAlike</a
           >
         </div>
+        <!-- Sound -->
+        <div class="w-11/12 p-4 my-2 bg-purple-700 rounded shadow-sm">
+          <a
+            class="text-yellow-500 font-bold"
+            href="https://www.youtube.com/watch?v=6wgClhYQpB8"
+            >Free Sound Effect - Horror Ambience</a
+          >
+          by
+          <a
+            class="text-yellow-500 font-bold"
+            href="https://www.youtube.com/channel/UCaDZv4oLT0uUIwsu68tJnfg"
+            >Stingray Productions</a
+          >
+        </div>
       </div>
     </div>
   </div>

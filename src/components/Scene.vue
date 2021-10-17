@@ -14,13 +14,16 @@ export default {
   data() {
     return {
       debug: false,
+      audio: null,
       isCatSceneReady: false,
       isHouseSceneReady: false,
       isPumpkinSceneReady: false,
+      isSoundsReady: false,
     };
   },
   mounted() {
     this.createScene();
+    this.addAudio();
   },
   methods: {
     createScene() {
@@ -178,12 +181,31 @@ export default {
 
       animate();
     },
+    addAudio() {
+      if (this.audio) {
+        this.stopAudio();
+        this.audio = null;
+      }
 
+      this.audio = new Audio("/audio/horrorThemeSong.mp3");
+      this.audio.loop = true;
+      this.audio.addEventListener("canplaythrough", () => {
+        this.isSoundsReady = true;
+        this.isAllScenesLoaded();
+      });
+    },
+    playAudio() {
+      this.audio.play();
+    },
+    stopAudio() {
+      this.audio.pause();
+    },
     isAllScenesLoaded() {
       if (
         this.isCatSceneReady &&
         this.isHouseSceneReady &&
-        this.isPumpkinSceneReady
+        this.isPumpkinSceneReady &&
+        this.isSoundsReady
       ) {
         this.$emit("sceneIsReady");
       }

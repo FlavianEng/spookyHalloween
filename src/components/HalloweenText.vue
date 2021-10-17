@@ -14,7 +14,7 @@
       class="text-yellow-500 fixed bottom-28 left-1/2"
     ></ArrowDownIcon>
     <!-- Header -->
-    <div class="fixed top-0 flex w-full justify-between items-center z-20 my-4">
+    <div class="fixed top-0 flex w-full justify-between z-20 my-4">
       <div class="ml-4">
         <button
           class="
@@ -30,8 +30,17 @@
           Credits
         </button>
       </div>
-
-      <Switch class="mr-4" @isSwitchToggled="toggleTextVisibility"></Switch>
+      <div class="mr-4">
+        <Switch
+          label="Display texts"
+          class="mb-2"
+          @isSwitchToggled="toggleTextVisibility"
+        ></Switch>
+        <Switch
+          label="Activate the sound"
+          @isSwitchToggled="toggleAudio"
+        ></Switch>
+      </div>
     </div>
     <!-- Content -->
     <div
@@ -101,6 +110,16 @@ export default {
     Credits,
     ArrowDownIcon,
   },
+  props: {
+    playAudio: {
+      type: Function,
+      required: true,
+    },
+    stopAudio: {
+      type: Function,
+      required: true,
+    },
+  },
   data() {
     return {
       isTextVisible: true,
@@ -109,6 +128,7 @@ export default {
       scrollIconTimeoutDelay: 10000,
       scrollIconTimeout: null,
       isShowScrollIcon: false,
+      isAudioPlaying: false,
     };
   },
   created() {
@@ -121,6 +141,14 @@ export default {
   methods: {
     toggleTextVisibility(toggleState) {
       this.isTextVisible = toggleState;
+    },
+    toggleAudio(toggleState) {
+      this.isAudioPlaying = toggleState;
+      if (this.isAudioPlaying) {
+        this.playAudio();
+      } else {
+        this.stopAudio();
+      }
     },
     toggleCreditsDisplayed() {
       this.isCreditsDisplayed = !this.isCreditsDisplayed;

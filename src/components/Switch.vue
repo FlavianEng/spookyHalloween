@@ -7,7 +7,7 @@
       class="text-yellow-500 mr-2 font-bold"
       :class="{ 'text-purple-500': isOn }"
     >
-      Afficher le texte
+      {{ label }}
     </div>
     <div
       class="w-14 h-7 bg-yellow-500 rounded-full flex items-center p-1"
@@ -35,7 +35,12 @@
 <script>
 export default {
   name: "Switch",
-  props: {},
+  props: {
+    label: {
+      type: String,
+      default: "Switched on",
+    },
+  },
   emits: ["isSwitchToggled"],
   data() {
     return {
