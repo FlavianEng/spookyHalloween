@@ -86,7 +86,21 @@
             >CC Attribution - NonCommercial - ShareAlike</a
           >
         </div>
-        <!-- Sound -->
+
+        <!-- TEXT -->
+        <div class="w-11/12 p-4 my-2 bg-purple-700 rounded shadow-sm">
+          <a
+            class="text-yellow-500 font-bold"
+            href="https://www.history.com/topics/halloween/history-of-halloween"
+            >Text : Black cats and Ghosts on Halloween</a
+          >
+          by
+          <a class="text-yellow-500 font-bold" href="History.com Editors"
+            >History.com Editors</a
+          >
+        </div>
+
+        <!-- SOUND -->
         <div class="w-11/12 p-4 my-2 bg-purple-700 rounded shadow-sm">
           <a
             class="text-yellow-500 font-bold"

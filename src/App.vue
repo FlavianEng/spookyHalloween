@@ -43,7 +43,6 @@ export default {
       this.$refs.splashscreen.resetSplashscreen();
       setTimeout(() => {
         this.isLoading = false;
-        this.playAudio();
       }, 1000);
     },
     playAudio() {

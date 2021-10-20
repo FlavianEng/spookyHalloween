@@ -8,7 +8,7 @@
       viewBox="0 0 24 24"
       :width="width"
       xmlns="http://www.w3.org/2000/svg"
-      class="animate-witch"
+      :class="{ 'animate-witch': isAnimated }"
     >
       <title />
       <path
@@ -66,6 +66,10 @@ export default {
     iconColor: {
       type: String,
       default: "currentColor",
+    },
+    isAnimated: {
+      type: Boolean,
+      default: false,
     },
   },
 };

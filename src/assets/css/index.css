@@ -11,6 +11,11 @@
     @apply ml-auto;
   }
 
+  .text-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+
   .animate-witch {
     animation: witch 3000ms linear infinite;
   }

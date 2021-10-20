@@ -14,6 +14,9 @@ module.exports = {
         60: "60",
         70: "70",
       },
+      letterSpacing: {
+        tightest: "-.5em",
+      },
     },
   },
   variants: {

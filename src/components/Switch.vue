@@ -1,16 +1,16 @@
 <template>
   <div
-    class="flex justify-end items-center cursor-pointer"
+    class="flex justify-end items-center cursor-pointer w-full md:w-auto"
     @click="toggleSwitch"
   >
     <div
-      class="text-yellow-500 mr-2 font-bold"
+      class="text-yellow-500 mr-auto md:mr-2 font-bold"
       :class="{ 'text-purple-500': isOn }"
     >
       {{ label }}
     </div>
     <div
-      class="w-14 h-7 bg-yellow-500 rounded-full flex items-center p-1"
+      class="w-14 h-7 bg-yellow-500 rounded-full flex items-end p-1"
       :class="{ 'bg-purple-600': isOn }"
     >
       <button
@@ -40,11 +40,15 @@ export default {
       type: String,
       default: "Switched on",
     },
+    initialState: {
+      type: Boolean,
+      default: true,
+    },
   },
   emits: ["isSwitchToggled"],
   data() {
     return {
-      isOn: true,
+      isOn: this.initialState,
     };
   },
   methods: {

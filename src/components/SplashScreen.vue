@@ -16,7 +16,11 @@
     :class="{ 'opacity-0': !loading }"
   >
     <div class="flex justify-start items-center w-full">
-      <WitchIcon :height="witchSize" :width="witchSize"></WitchIcon>
+      <WitchIcon
+        :height="witchSize"
+        :width="witchSize"
+        :is-animated="true"
+      ></WitchIcon>
     </div>
 
     <div>

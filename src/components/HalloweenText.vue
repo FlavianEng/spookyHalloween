@@ -3,19 +3,85 @@
     class="w-full h-screen"
     :class="{ 'overflow-hidden': isCreditsDisplayed }"
   >
-    <Credits
-      :is-credits-displayed="isCreditsDisplayed"
-      @close="toggleCreditsDisplayed"
-    ></Credits>
     <ArrowDownIcon
       v-show="isShowScrollIcon"
-      :height="arrowDownIconSize"
-      :width="arrowDownIconSize"
+      :height="iconSize"
+      :width="iconSize"
       class="text-yellow-500 fixed bottom-28 left-1/2"
     ></ArrowDownIcon>
+
     <!-- Header -->
-    <div class="fixed top-0 flex w-full justify-between z-20 my-4">
-      <div class="ml-4">
+    <div class="hidden md:block">
+      <Credits
+        :is-credits-displayed="isCreditsDisplayed"
+        @close="toggleCreditsDisplayed"
+      ></Credits>
+      <div class="fixed top-0 flex w-full justify-between z-20 my-4">
+        <div class="ml-4">
+          <button
+            class="
+              text-purple-500
+              font-bold
+              border-b-2 border-transparent
+              hover:border-purple-500 hover:text-yellow-500
+              transition-all
+              duration-500
+            "
+            @click="toggleCreditsDisplayed"
+          >
+            Credits
+          </button>
+        </div>
+        <div class="mr-4">
+          <Switch
+            label="Display texts"
+            class="mb-2"
+            @isSwitchToggled="toggleTextVisibility"
+          ></Switch>
+          <Switch
+            label="Activate the sound"
+            :initial-state="false"
+            @isSwitchToggled="toggleAudio"
+          ></Switch>
+        </div>
+      </div>
+    </div>
+    <div class="block md:hidden fixed top-0 z-20">
+      <button
+        v-show="!isMenuOpen"
+        class="flex items-center justify-center text-yellow-500 m-1"
+        @click="openMenu"
+      >
+        <p class="text-vertical tracking-tightest text-xs font-bold">Menu</p>
+        <WitchIcon
+          :height="iconSize"
+          :width="iconSize"
+          class="mt-1"
+        ></WitchIcon>
+      </button>
+      <div
+        v-show="isMenuOpen"
+        class="
+          fixed
+          h-screen
+          bg-gray-900
+          w-56
+          text-purple-500
+          font-bold
+          p-4
+          flex flex-col
+          justify-start
+          items-start
+        "
+      >
+        <div class="flex flex-col w-full mb-4">
+          <div class="flex justify-between items-center" @click="closeMenu">
+            <p>Menu</p>
+            <span class="text-xl">&times;</span>
+          </div>
+          <span class="w-full h-1 bg-purple-500 rounded"></span>
+        </div>
+
         <button
           class="
             text-purple-500
@@ -24,20 +90,21 @@
             hover:border-purple-500 hover:text-yellow-500
             transition-all
             duration-500
+            mb-2
           "
           @click="toggleCreditsDisplayed"
         >
           Credits
         </button>
-      </div>
-      <div class="mr-4">
+
         <Switch
           label="Display texts"
-          class="mb-2"
+          class="mb-4"
           @isSwitchToggled="toggleTextVisibility"
         ></Switch>
         <Switch
           label="Activate the sound"
+          :initial-state="false"
           @isSwitchToggled="toggleAudio"
         ></Switch>
       </div>
@@ -102,6 +169,7 @@
 import Switch from "./Switch.vue";
 import Credits from "./Credits.vue";
 import ArrowDownIcon from "./icons/ArrowDownIcon.vue";
+import WitchIcon from "./icons/WitchIcon.vue";
 
 export default {
   name: "TextContent",
@@ -109,6 +177,7 @@ export default {
     Switch,
     Credits,
     ArrowDownIcon,
+    WitchIcon,
   },
   props: {
     playAudio: {
@@ -124,11 +193,12 @@ export default {
     return {
       isTextVisible: true,
       isCreditsDisplayed: false,
-      arrowDownIconSize: 40,
+      iconSize: 40,
       scrollIconTimeoutDelay: 10000,
       scrollIconTimeout: null,
       isShowScrollIcon: false,
       isAudioPlaying: false,
+      isMenuOpen: true,
     };
   },
   created() {
@@ -162,6 +232,12 @@ export default {
       this.isShowScrollIcon = false;
       clearTimeout(this.scrollIconTimeout);
       this.scrollIconTimeout = null;
+    },
+    openMenu() {
+      this.isMenuOpen = true;
+    },
+    closeMenu() {
+      this.isMenuOpen = false;
     },
   },
 };
