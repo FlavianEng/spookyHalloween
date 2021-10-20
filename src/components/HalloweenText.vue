@@ -158,7 +158,16 @@
         stepping on cracks in the road or spilling salt.
       </p>
 
-      <h2 class="text-9xl mb-40% font-Creepster text-center text-yellow-500">
+      <h2
+        class="
+          text-5xl
+          lg:text-9xl
+          mb-96
+          md:mb-40%
+          font-Creepster
+          text-center text-yellow-500
+        "
+      >
         Spooky Halloween !
       </h2>
     </div>
@@ -198,7 +207,7 @@ export default {
       scrollIconTimeout: null,
       isShowScrollIcon: false,
       isAudioPlaying: false,
-      isMenuOpen: true,
+      isMenuOpen: false,
     };
   },
   created() {
