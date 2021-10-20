@@ -11,6 +11,7 @@
     ></ArrowDownIcon>
 
     <!-- Header -->
+    <!-- Desktop menu -->
     <div class="hidden md:block">
       <Credits
         :is-credits-displayed="isCreditsDisplayed"
@@ -46,6 +47,7 @@
         </div>
       </div>
     </div>
+    <!-- Mobile menu -->
     <div class="block md:hidden fixed top-0 z-20">
       <button
         v-show="!isMenuOpen"
