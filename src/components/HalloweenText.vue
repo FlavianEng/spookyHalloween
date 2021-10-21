@@ -7,16 +7,16 @@
       v-show="isShowScrollIcon"
       :height="iconSize"
       :width="iconSize"
-      class="text-yellow-500 fixed bottom-28 left-1/2"
+      class="text-yellow-500 flex w-full fixed bottom-28 ml-auto"
     ></ArrowDownIcon>
+    <Credits
+      :is-credits-displayed="isCreditsDisplayed"
+      @close="toggleCreditsDisplayed"
+    ></Credits>
 
     <!-- Header -->
     <!-- Desktop menu -->
     <div class="hidden md:block">
-      <Credits
-        :is-credits-displayed="isCreditsDisplayed"
-        @close="toggleCreditsDisplayed"
-      ></Credits>
       <div class="fixed top-0 flex w-full justify-between z-20 my-4">
         <div class="ml-4">
           <button
@@ -61,55 +61,61 @@
           class="mt-1"
         ></WitchIcon>
       </button>
-      <div
-        v-show="isMenuOpen"
+    </div>
+    <div
+      class="
+        h-screen
+        bg-gray-900
+        w-56
+        text-purple-500
+        font-bold
+        p-4
+        flex flex-col
+        justify-start
+        items-start
+        transform
+        transition-all
+        duration-500
+        md:hidden
+        fixed
+        top-0
+        z-20
+      "
+      :class="[isMenuOpen ? 'translate-x-0' : '-translate-x-56']"
+    >
+      <div class="flex flex-col w-full mb-4">
+        <div class="flex justify-between items-center" @click="closeMenu">
+          <p>Menu</p>
+          <span class="text-xl">&times;</span>
+        </div>
+        <span class="w-full h-1 bg-purple-500 rounded"></span>
+      </div>
+
+      <button
         class="
-          fixed
-          h-screen
-          bg-gray-900
-          w-56
           text-purple-500
           font-bold
-          p-4
-          flex flex-col
-          justify-start
-          items-start
+          border-b-2 border-transparent
+          hover:border-purple-500 hover:text-yellow-500
+          transition-all
+          duration-500
+          mb-2
         "
+        @click="toggleCreditsDisplayed"
       >
-        <div class="flex flex-col w-full mb-4">
-          <div class="flex justify-between items-center" @click="closeMenu">
-            <p>Menu</p>
-            <span class="text-xl">&times;</span>
-          </div>
-          <span class="w-full h-1 bg-purple-500 rounded"></span>
-        </div>
+        Credits
+      </button>
 
-        <button
-          class="
-            text-purple-500
-            font-bold
-            border-b-2 border-transparent
-            hover:border-purple-500 hover:text-yellow-500
-            transition-all
-            duration-500
-            mb-2
-          "
-          @click="toggleCreditsDisplayed"
-        >
-          Credits
-        </button>
-
-        <Switch
-          label="Display texts"
-          class="mb-4"
-          @isSwitchToggled="toggleTextVisibility"
-        ></Switch>
-        <Switch
-          label="Activate the sound"
-          :initial-state="false"
-          @isSwitchToggled="toggleAudio"
-        ></Switch>
-      </div>
+      <Switch
+        label="Display texts"
+        class="mb-4"
+        @isSwitchToggled="toggleTextVisibility"
+      ></Switch>
+      <Switch
+        label="Activate the sound"
+        :initial-state="false"
+        @isSwitchToggled="toggleAudio"
+      ></Switch>
     </div>
     <!-- Content -->
     <div
@@ -164,8 +170,7 @@
         class="
           text-5xl
           lg:text-9xl
-          mb-96
-          md:mb-40%
+          mb-70vh
           font-Creepster
           text-center text-yellow-500
         "

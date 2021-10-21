@@ -9,8 +9,9 @@
     >
       {{ label }}
     </div>
+    <!-- Switch -->
     <div
-      class="w-14 h-7 bg-yellow-500 rounded-full flex items-end p-1"
+      class="h-7 min-w-14 bg-yellow-500 rounded-full flex items-end p-1"
       :class="{ 'bg-purple-600': isOn }"
     >
       <button

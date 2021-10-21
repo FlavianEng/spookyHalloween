@@ -1,10 +1,21 @@
 <template>
   <div
     v-show="isCreditsDisplayed"
-    class="w-full h-screen fixed top-0 left-0 flex justify-center items-center"
+    class="
+      w-full
+      fixed
+      h-full
+      top-0
+      left-0
+      flex
+      justify-center
+      items-center
+      z-40
+      overflow-y-auto
+    "
   >
-    <div class="bg-gray-900 w-full h-screen z-40 absolute opacity-90"></div>
-    <div class="bg-purple-900 w-3/4 p-4 z-50 rounded">
+    <div class="bg-gray-900 w-full h-full fixed top-0 opacity-90"></div>
+    <div class="bg-purple-900 w-11/12 p-4 z-50 rounded absolute mb-4 top-4">
       <div class="flex items-center justify-center flex-col">
         <div
           class="flex items-center justify-center text-white font-bold p-4 pt-0"
@@ -13,8 +24,9 @@
           <button
             class="
               absolute
-              right-60
-              text-4xl
+              right-4
+              text-2xl
+              md:text-4xl
               transform
               origin-center
               rotate-0
@@ -29,7 +41,16 @@
         </div>
         <div class="w-11/12 h-1 bg-yellow-400 rounded-full"></div>
       </div>
-      <div class="flex flex-col justify-center items-center mt-2 text-white">
+      <div
+        class="
+          flex flex-col
+          justify-center
+          items-center
+          mt-2
+          text-white text-sm
+          md:text-base
+        "
+      >
         <!-- TOON HOUSE -->
         <div class="w-11/12 p-4 my-2 bg-purple-700 rounded shadow-sm">
           <a class="text-yellow-500 font-bold" href="https://skfb.ly/DJyP"

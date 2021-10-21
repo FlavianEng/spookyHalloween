@@ -25,6 +25,7 @@ import HalloweenText from "./components/HalloweenText.vue";
 import SplashScreen from "./components/SplashScreen.vue";
 
 // TASK Create a README.MD with a link to the 3D model author
+// TASK Configure purge option of tailwind
 export default {
   name: "App",
   components: {
