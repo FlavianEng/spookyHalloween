@@ -2,6 +2,7 @@
   <div
     class="w-full h-screen"
     :class="{ 'overflow-hidden': isCreditsDisplayed }"
+    @click="tryCloseMenu"
   >
     <ArrowDownIcon
       v-show="isShowScrollIcon"
@@ -52,7 +53,7 @@
       <button
         v-show="!isMenuOpen"
         class="flex items-center justify-center text-yellow-500 m-1"
-        @click="openMenu"
+        @click.prevent.stop="openMenu"
       >
         <p class="text-vertical tracking-tightest text-xs font-bold">Menu</p>
         <WitchIcon
@@ -63,6 +64,7 @@
       </button>
     </div>
     <div
+      id="mobileMenu"
       class="
         h-screen
         bg-gray-900
@@ -254,6 +256,11 @@ export default {
     },
     closeMenu() {
       this.isMenuOpen = false;
+    },
+    tryCloseMenu({ target }) {
+      if (this.isMenuOpen && target.id !== "mobileMenu") {
+        this.closeMenu();
+      }
     },
   },
 };
