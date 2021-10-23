@@ -1,24 +1,21 @@
-# vuethree
+# Spooky Halloween
+This project is made with `Vue.js 3` and `Three.js`
 
-## Project setup
-```
-npm install
-```
+🎃 Enjoy Halloween anecdotes through a spooky 3D scene ! 🎃
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# How to setup 
+1. Download this project and move to the repository with __cd spookyHalloween__
+2. Install it with __npm i__ 
+3. Run the project with __npm run serve__
+4. Open your favorite browser and go to __http://localhost:7111__
 
-### Compiles and minifies for production
-```
-npm run build
-```
+# Credits
+- "Toon houses night version" (https://skfb.ly/DJyP) by luyssport is licensed under CC Attribution-NonCommercial-ShareAlike (http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-### Lints and fixes files
-```
-npm run lint
-```
+- "HH" (https://skfb.ly/V7TZ) by luyssport is licensed under Creative Commons Attribution-ShareAlike (http://creativecommons.org/licenses/by-sa/4.0/).
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- "Pumpkin final step" (https://skfb.ly/HNDx) by luyssport is licensed under CC Attribution-NonCommercial-ShareAlike (http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+- Text : Black cats and Ghosts on Halloween by History.com Editors
+
+- Free Sound Effect - Horror Ambience by Stingray Productions
