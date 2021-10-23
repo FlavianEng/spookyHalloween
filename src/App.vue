@@ -1,5 +1,5 @@
 <template>
-  <div class="font-Poppins">
+  <div class="font-Poppins overscroll-none">
     <Scene
       ref="scene"
       class="fixed top-0 left-0"
