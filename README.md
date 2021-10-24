@@ -3,6 +3,8 @@ This project is made with `Vue.js 3` and `Three.js`
 
 🎃 Enjoy Halloween anecdotes through a spooky 3D scene ! 🎃
 
+[https://spookyhalloween.netlify.app/](https://spookyhalloween.netlify.app/)
+
 # How to setup 
 1. Download this project and move to the repository with __cd spookyHalloween__
 2. Install it with __npm i__ 
